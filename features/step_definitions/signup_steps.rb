@@ -28,12 +28,12 @@ find(:css, ".icon")
 # all feature sections in a list
   puts " "
   puts "Feature Sections Element list by xPath: "
-all(:xpath, "//section[@class='box special features']/descendant::*").each do |el|
+all(:xpath, "//section[@class='box special features']/parent::section/descendant::div[@class='features-row']").each do |el|
   puts el
 end
   puts " "
   puts "Feature Sections Element list by CSS: "
-all(:css, "section.box *").each do |el|
+all(:css, "div.features-row").each do |el|
   puts el
 end
   puts " "
