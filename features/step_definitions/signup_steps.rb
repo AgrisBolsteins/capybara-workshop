@@ -28,13 +28,13 @@ find(:css, ".icon")
 # all feature sections in a list
   puts " "
   puts "Feature Sections Element list by xPath: "
-all(:xpath, "//section[@class='box special features']/descendant::*").each do |element|
-  puts element
+all(:xpath, "//section[@class='box special features']/descendant::*").each do |el|
+  puts el
 end
   puts " "
   puts "Feature Sections Element list by CSS: "
-all(:css, "section.box *").each do |element|
-  puts element
+all(:css, "section.box *").each do |el|
+  puts el
 end
   puts " "
 # Chain requests with reusable data image
@@ -45,8 +45,8 @@ end
   puts " "
 
   puts "Chain requests with reusable data image by CSS: "
-all(:css, "div.features-row:nth-child(1) > section:nth-child(1) > img:nth-child(1)").each do |element|
-  puts element
+all(:css, "div.features-row:nth-child(1) > section:nth-child(1) > img:nth-child(1)").each do |el|
+  puts el
 end
   puts " "
 
