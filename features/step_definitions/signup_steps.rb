@@ -46,9 +46,6 @@ end
 
 And(/^I try to Sign in/) do
   find(:css, '#login .button').click
-  unless find(:xpath, '//span[contains(text(), "Username or password is not correct")]').visible?
-    raise "Error message not visible"
-  end
 end
 
 Then(/^I validate if error is visible/) do
