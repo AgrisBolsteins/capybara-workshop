@@ -8,6 +8,9 @@ Feature: Demo Feature
         Then I click Inbox logo button
         And I am at Inbox home page
         Then I open Registration page
-        And I enter "FakeUserName", "FakeName", "FakeLastName", "FakePassword" in Registration fields
-        
+        When I enter "FakeUserName", "FakeName", "FakeLastName", "FakePassword" in Registration fields
+        And I check User Agreement checkbox
+        Then I click Pabeigt button
+        And I am on Security popup
+        Then I click Atcelt button
         

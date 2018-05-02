@@ -52,10 +52,38 @@ Then(/^I open Registration page/) do
   end
 end
 
-And("I enter {string}, {string}, {string}, {string} in Registration fields") do |username, name, lastname, password|
+When("I enter {string}, {string}, {string}, {string} in Registration fields") do |username, name, lastname, password|
   find(:css, '#signup_user').send_keys(username)
   find(:css, '#signup_forename').send_keys(name)
   find(:css, '#signup_surname').send_keys(lastname)
   find(:css, '#signup_password_password').send_keys(password)
   find(:css, '#signup_password_passwordRepeat').send_keys(password)
 end
+
+And(/^I check User Agreement checkbox/) do
+   find(:css, '#signup_tos').click
+end
+
+Then(/^I click Pabeigt button/) do
+  unless find(:css, '#signup_submit').visible?
+    raise "Pabeigt button not visible"
+  end
+  find(:css, '#signup_submit').click
+  unless find(:css, '#myModalLabel').visible?
+    raise "Label not visible"
+  end
+end
+
+And(/^I am on Security popup/) do
+  unless find(:css, '#myModalLabel').visible?
+    raise "Label not visible"
+  end
+end
+
+Then(/^I click Atcelt button/) do
+ unless find(:xpath, "//button[contains(text(), 'Atcelt')]").visible?
+    raise "Atcelt button not visible"
+  find(:xpath, "//button[contains(text(), 'Atcelt')]").click
+  end
+end
+
