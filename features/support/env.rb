@@ -13,11 +13,11 @@ require 'chromedriver/helper'
 SitePrism.configure do |config|
   config.use_implicit_waits = true
 end
-Capybara.app_host = 'https://login.inbox.lv/'
+Capybara.app_host = 'http://www.apimation.com'
 Capybara.save_path = 'report/'
 Capybara::Screenshot.autosave_on_failure = false
 Capybara::Screenshot.prune_strategy = :keep_last_run
-# =================================================================== # 
+# =================================================================== #
 #######################################################################
 # ========================= ENVIRONMENT SETUP ========================#
 Capybara.register_driver :selenium do |app|

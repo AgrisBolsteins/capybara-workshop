@@ -1,16 +1,18 @@
 Feature: Demo Feature
 
-    Scenario: Login and Registration page
-        Given I am on Inbox home page
-        When I enter "SomeUserName", "WrongPassword" in Login
-        Then I click Ieiet button
-        And I see Alert Message
-        Then I click Inbox logo button
-        And I am at Inbox home page
-        Then I open Registration page
-        When I enter "FakeUserName", "FakeName", "FakeLastName", "FakePassword" in Registration fields
-        And I check User Agreement checkbox
-        Then I click Pabeigt button
-        And I am on Security popup
-        Then I click Atcelt button
+    Scenario: Open Sign Up page
+        Given I am on Apimation home page
+        When I click SignUp button
+        And I check if SignUp view is visible
+        Then I enter "agrisbolsteins@testdevlab.com", "password", "This_Is_Project_name" in SignUp fields
+        And I close SignUp view
+        Then I validate if Signup view is closed
+
+    Scenario: Open Registration page
+        Given I am on Apimation home page
+        When I click LogIn button
+        Then I enter "fakeEmail@gmail.com", "fakePassword" in LogIn fields
+        And I try to Sign in
+        Then I validate if error is visible
+
         

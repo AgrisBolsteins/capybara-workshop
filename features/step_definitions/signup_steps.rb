@@ -1,89 +1,59 @@
-Given(/^I am on Inbox home page/) do
-  visit('/')
-  unless find(:css, '.nav-logo__link').visible?
+Given(/^I am on Apimation home page/) do
+  visit('/legacy')
+  unless find(:css, '#signup-b').visible?
     raise "Logo not visible"
   end
 end
 
-When("I enter {string}, {string} in Login") do |email, password|
-  find(:css, '#userName').send_keys(email)
-  find(:css, '#password').send_keys(password)
+When(/^I click SignUp button/) do
+  find(:css, '#signup-b').click
 end
 
-Then(/^I click Ieiet button/) do
-  unless find(:css, '#implogin__btn_sign-in').visible?
-    raise "Ieiet button not visible"
-  end
-  find(:css, '#implogin__btn_sign-in').click
-  unless find(:xpath, "//a[contains(text(), 'Nepieciešama palīdzība?')]").visible?
-    raise "Alert message not visible"
+And(/^I check if SignUp view is visible/) do
+  unless find(:css, '#signup button[type="submit"]').visible?
+    raise "Signup view not visible"
   end
 end
 
-And(/^I see Alert Message/) do
-  unless find(:xpath, "//a[contains(text(), 'Nepieciešama palīdzība?')]").visible?
-    raise "Alert message not visible"
+Then("I enter {string}, {string}, {string} in SignUp fields") do |email, password, projectName|
+  find(:css, '#signup input[name="login"]').send_keys(email)
+  find(:css, '#signup input[name="password1"]').send_keys(password)
+  find(:css, '#signup input[name="password2"]').send_keys(password)
+  find(:css, '#signup input[name="project_name"]').send_keys(projectName)
+end
+
+And(/^I close SignUp view/) do
+  find(:css, '#signup .closecross').click
+end
+
+Then(/^I validate if Signup view is closed/) do
+  if (find(:css, '#signup .closecross').visible?)
+    raise "Signup view is not closed"
   end
 end
 
-Then(/^I click Inbox logo button/) do
-  unless find(:css, '.nav-logo__link').visible?
-    raise "Inbox logo not visible"
-  end
-    find(:css, '.nav-logo__link').click
-  unless find(:css, '.lead').visible?
-    raise "Registreties button not visible"
+When(/^I click LogIn button/) do
+  find(:css, '#login-b').click
+  unless find(:css, '#fpw_link').visible?
+    raise "Link not visible"
   end
 end
 
-And(/^I am at Inbox home page/) do
-  unless find(:xpath, "//div[contains(text(), 'Pirmo reizi Inbox.lv portālā?')]")
-    raise "Text not visible"
+Then("I enter {string}, {string} in LogIn fields") do |email, password|
+  find(:css, '#login input[name="login"]').send_keys(email)
+  find(:css, '#login input[name="password"]').send_keys(password)
+end
+
+And(/^I try to Sign in/) do
+  find(:css, '#login .button').click
+  unless find(:xpath, '//span[contains(text(), "Username or password is not correct")]').visible?
+    raise "Error message not visible"
   end
 end
 
-Then(/^I open Registration page/) do
-  unless find(:css, '.lead').visible?
-    raise "Registration button not visible"
-  end
-    find(:css, '.lead').click
-  unless find(:css, '#signup_submit').visible?
-    raise "Title not visible"
-  end
-end
-
-When("I enter {string}, {string}, {string}, {string} in Registration fields") do |username, name, lastname, password|
-  find(:css, '#signup_user').send_keys(username)
-  find(:css, '#signup_forename').send_keys(name)
-  find(:css, '#signup_surname').send_keys(lastname)
-  find(:css, '#signup_password_password').send_keys(password)
-  find(:css, '#signup_password_passwordRepeat').send_keys(password)
-end
-
-And(/^I check User Agreement checkbox/) do
-   find(:css, '#signup_tos').click
-end
-
-Then(/^I click Pabeigt button/) do
-  unless find(:css, '#signup_submit').visible?
-    raise "Pabeigt button not visible"
-  end
-  find(:css, '#signup_submit').click
-  unless find(:css, '#myModalLabel').visible?
-    raise "Label not visible"
-  end
-end
-
-And(/^I am on Security popup/) do
-  unless find(:css, '#myModalLabel').visible?
-    raise "Label not visible"
-  end
-end
-
-Then(/^I click Atcelt button/) do
- unless find(:xpath, "//button[contains(text(), 'Atcelt')]").visible?
-    raise "Atcelt button not visible"
-  find(:xpath, "//button[contains(text(), 'Atcelt')]").click
+Then(/^I validate if error is visible/) do
+  unless find(:xpath, '//span[contains(text(), "Username or password is not correct")]').visible?
+    raise "Error message not visible"
   end
 end
 
