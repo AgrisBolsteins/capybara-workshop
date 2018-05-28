@@ -1,10 +1,17 @@
 Feature: Demo Feature
 
     Scenario: Open SignUp Page
-        Given I am on Appimation home page
-        When I open Try now
-        Then I close Try now
+        Given I am on Apimation home page
+        When I click SignUp button
+        And I check if SignUp view is visible
+        Then I fill out Sign Up form
+        And I close SignUp view
+        Then I validate if SignUp view is closed
 
-    Scenario: I can send contact us message
-        Given I am on Appimation home page
-        When I enter "lalalalla" and "namemname" in name in contact us
+    Scenario: Open Registration page
+        Given I am on Apimation home page
+        When I click LogIn button
+        And I check if LogIn view is visible
+        Then I fill out Log In form
+        And I try to Sign in
+        Then I validate if error is visible
