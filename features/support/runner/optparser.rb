@@ -16,8 +16,8 @@ class Optparse
 
    opt_parser = OptionParser.new do |opts|
     opts.banner = 'Usage:ruby main.rb [options]'
-    opts.seperator ''
-    opts.seperator 'Specific Options:'
+    opts.separator ''
+    opts.separator 'Specific Options:'
     
     opts.on('-f', '--format [Format]', 'Report format [json/html]') do |format|
         options.format = format
